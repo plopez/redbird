@@ -132,7 +132,7 @@ public class Redbird {
         try self.handleComms {
             
             //send the command string
-            try self.socket.write(data: data)
+            try self.socket.writeB(data: data)
             
             //delegate reading to parsers
             let reader: SocketReader = self.socket
