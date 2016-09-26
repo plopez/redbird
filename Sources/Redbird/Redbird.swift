@@ -125,14 +125,14 @@ public class Redbird {
     }
 	
     @discardableResult
-    public func commandNew(data: bytes) throws -> RespObject {
+    public func commandNew(data: [Byte]) throws -> RespObject {
         
         var ret: RespObject?
         
         try self.handleComms {
             
             //send the command string
-            try self.socket.write(data: bytes)
+            try self.socket.write(data: data)
             
             //delegate reading to parsers
             let reader: SocketReader = self.socket
