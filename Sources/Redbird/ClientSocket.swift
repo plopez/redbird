@@ -13,6 +13,7 @@ typealias SocketError = SocksError
 
 protocol Socket: class, SocketReader {
     func write(string: String) throws
+    func writeB(data: [Byte]) throws
     func read(bytes: Int) throws -> [Byte]
     func newWithConfig(config: RedbirdConfig) throws -> Socket
     func close()
@@ -47,7 +48,7 @@ class ClientSocket: Socket {
         try self.client.send(bytes: string.toBytes())
     }
     
-    func write(data: [Byte]) throws {
+    func writeB(data: [Byte]) throws {
         try self.client.send(bytes: data)
     }
     
