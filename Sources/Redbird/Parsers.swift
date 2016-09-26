@@ -50,7 +50,7 @@ struct InitialParser: Parser {
         switch signature {
         case RespError.signature: parser = ErrorParser()
         case RespSimpleString.signature: parser = SimpleStringParser()
-        case RespInteger.signature: parser = IntegerParser()
+        //case RespInteger.signature: parser = IntegerParser()
         case RespBulkString.signature: parser = BulkStringParser()
         case RespArray.signature: parser = ArrayParser()
         default:
@@ -88,7 +88,7 @@ struct SimpleStringParser: Parser {
 }
 
 /// Parses the Integer type
-struct IntegerParser: Parser {
+/*struct IntegerParser: Parser {
     
     func parse(_ alreadyRead: [Byte], reader: SocketReader) throws -> (RespObject, [Byte]) {
         
@@ -98,7 +98,7 @@ struct IntegerParser: Parser {
         let parsed = try RespInteger(content: inner)
         return (parsed, tail ?? [])
     }
-}
+}*/
 
 /// Parses the BulkString type
 struct BulkStringParser: Parser {
