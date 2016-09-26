@@ -47,7 +47,7 @@ class ClientSocket: Socket {
         try self.client.send(bytes: string.toBytes())
     }
     
-    func write(data: bytes) throws {
+    func write(data: [Byte]) throws {
         try self.client.send(bytes: data)
     }
     
