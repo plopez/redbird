@@ -42,14 +42,14 @@ extension RespObject {
     
     public func toInt() throws -> Int {
         switch self.respType {
-        case .Integer: return Int((self as! RespInteger).intContent)
+        //case .Integer: return Int((self as! RespInteger).intContent)
         default: throw RedbirdError.wrongNativeTypeUnboxing(self, "Int")
         }
     }
     
     public func toBool() throws -> Bool {
         switch self.respType {
-        case .Integer: return (self as! RespInteger).boolContent
+        //case .Integer: return (self as! RespInteger).boolContent
         default: throw RedbirdError.wrongNativeTypeUnboxing(self, "Bool")
         }
     }
