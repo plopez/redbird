@@ -123,6 +123,29 @@ public class Redbird {
         }
         return ret!
     }
+	
+    @discardableResult
+    public func commandNew(data: bytes) throws -> RespObject {
+        
+        var ret: RespObject?
+        
+        try self.handleComms {
+            
+            //send the command string
+            try self.socket.write(data: bytes)
+            
+            //delegate reading to parsers
+            let reader: SocketReader = self.socket
+            
+            //try to parse the string into a Resp object, fail if no parser accepts it
+            let (responseObject, _) = try InitialParser().parse([], reader: reader)
+            
+            //TODO: read up on whether potential leftover characters from
+            //parsing should be treated as error or not, for now ignore them.
+            ret = responseObject
+        }
+        return ret!
+    }
     
     public func pipeline() -> Pipeline {
         return Pipeline(config: self.config, socket: self.socket)
